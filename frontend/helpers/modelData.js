@@ -13,6 +13,21 @@ export const defaultModel = {
     }
 }
 
+export const claude35Sonnet = {
+    modelName: "Anthropic Claude 3.5 Sonnet",
+    modelId: "anthropic.claude-3-5-sonnet-20240620-v1:0",
+    temperatureRange: {
+        min: 0,
+        max: 1,
+        default: 0.7
+    },
+    maxTokenRange: {
+        min: 0,
+        max: 4096,
+        default: 1000
+    }
+}
+
 export const models = [
     defaultModel,
     {
@@ -28,11 +43,21 @@ export const models = [
             max: 8191,
             default: 200
         }
-    }
+    },
+    claude35Sonnet
 ]
 
 export const defaultPayload = {
     prompt: "", 
     temperature: defaultModel.temperatureRange.default,
     maxTokens: defaultModel.maxTokenRange.default
+}
+
+export const storyDefaultPayload = {
+    theme: "",
+    genre: "",
+    characters: 1,
+    length: "medium",
+    temperature: claude35Sonnet.temperatureRange.default,
+    maxTokens: claude35Sonnet.maxTokenRange.default
 }
