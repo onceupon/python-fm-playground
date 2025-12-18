@@ -6,7 +6,7 @@ bedrock_runtime = boto3.client(
     region_name="us-east-1",
 )
 
-def invoke(prompt):
+def invoke(prompt, model_id):
 
     systemPrompt = """
                     Take the role of a friendly chat bot. Your responses are brief.
@@ -30,7 +30,7 @@ def invoke(prompt):
 
     response = bedrock_runtime.invoke_model(
         body=json.dumps(prompt_config),
-        modelId="anthropic.claude-3-5-sonnet-20241022-v2:0"
+        modelId=model_id
     )
 
     response_body = json.loads(response.get("body").read())

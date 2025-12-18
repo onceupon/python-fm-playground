@@ -6,10 +6,10 @@ from . import services
 router = APIRouter()
 
 
-@router.post("/foundation-models/model/chat/anthropic.claude-3-5-sonnet-20241022-v2:0/invoke")
-def invoke(body: models.ChatRequest):
+@router.post("/foundation-models/model/chat/{model_id}/invoke")
+def invoke(body: models.ChatRequest, model_id: str):
     try:
-        completion = services.invoke(body.prompt)
+        completion = services.invoke(body.prompt, model_id)
         return models.ChatResponse(
             completion=completion
         )
@@ -18,3 +18,5 @@ def invoke(body: models.ChatRequest):
             raise HTTPException(status_code=403)
         else:
             raise HTTPException(status_code=500)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

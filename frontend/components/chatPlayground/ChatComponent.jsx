@@ -12,7 +12,8 @@ export default function ChatContainer() {
     const [inputValue, setInputValue] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
-    const endpoint = "/foundation-models/model/chat/anthropic.claude-3-5-sonnet-20241022-v2:0/invoke";
+    const modelId = "anthropic.claude-3-5-sonnet-20241022-v2:0";
+    const endpoint = `/foundation-models/model/chat/${modelId}/invoke`;
     const api = `${GlobalConfig.apiHost}:${GlobalConfig.apiPort}${endpoint}`;
 
     const handleInputChange = (e) => {
