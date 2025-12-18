@@ -10,7 +10,7 @@ export default function ImageContainer() {
     const [stylePreset, setStylePreset] = useState('no style');
     const [isLoading, setIsLoading] = useState(false);
 
-    const modelId = "stability.stable-diffusion-xl";
+    const modelId = "stability.stable-diffusion-xl-v1:0";
     const endpoint = `/foundation-models/model/image/${modelId}/invoke`;
     const api = `${GlobalConfig.apiHost}:${GlobalConfig.apiPort}${endpoint}`;
 

@@ -69,7 +69,7 @@ export default function TextContainer() {
             }
 
             await response.json().then(data => {
-                if (selectedModel.modelId === "anthropic.claude-3-5-sonnet-20241022-v2:0") {
+                if (selectedModel.modelId === "us.anthropic.claude-3-5-sonnet-20241022-v2:0") {
                     setPrompt(`Human: ${payload.prompt}\n\nAssistant: ${data.completion}\n\nHuman: `)
                 } else {
                     setPrompt(`${payload.prompt}\n\n${data.completion}\n\n`)
