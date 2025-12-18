@@ -6,7 +6,7 @@ from . import services
 router = APIRouter()
 
 
-@router.post("/foundation-models/model/chat/anthropic.claude-v2/invoke")
+@router.post("/foundation-models/model/chat/anthropic.claude-3-5-sonnet-20241022-v2:0/invoke")
 def invoke(body: models.ChatRequest):
     try:
         completion = services.invoke(body.prompt)
