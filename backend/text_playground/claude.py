@@ -8,16 +8,22 @@ bedrock_runtime = boto3.client(
 
 def invoke(prompt, temperature, max_tokens):
     prompt_config = {
-        "prompt": f'\n\nHuman: {prompt} \n\nAssistant:',
-        "max_tokens_to_sample": max_tokens,
-        "temperature": temperature
+        "anthropic_version": "bedrock-2023-05-31",
+        "max_tokens": max_tokens,
+        "temperature": temperature,
+        "messages": [
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
     }
 
     response = bedrock_runtime.invoke_model(
         body=json.dumps(prompt_config),
-        modelId="anthropic.claude-v2"
+        modelId="anthropic.claude-3-5-sonnet-20241022-v2:0"
     )
 
     response_body = json.loads(response.get("body").read())
 
-    return response_body.get("completion")
+    return response_body['content'][0]['text']

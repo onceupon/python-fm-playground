@@ -10,7 +10,7 @@ router = APIRouter()
 @router.post("/foundation-models/model/text/{modelId}/invoke")
 def invoke(body: models.TextRequest, modelId: str):
     try:
-        if modelId == "anthropic.claude-v2":
+        if modelId == "anthropic.claude-3-5-sonnet-20241022-v2:0":
             completion = claude.invoke(body.prompt, body.temperature, body.maxTokens)
         elif modelId == "ai21.j2-mid-v1":
             completion = jurassic2.invoke(body.prompt, body.temperature, body.maxTokens)
