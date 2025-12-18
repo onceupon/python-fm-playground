@@ -14,6 +14,8 @@ def invoke(body: models.TextRequest, modelId: str):
             completion = claude.invoke(body.prompt, body.temperature, body.maxTokens)
         elif modelId == "ai21.j2-mid-v1":
             completion = jurassic2.invoke(body.prompt, body.temperature, body.maxTokens)
+        else:
+            raise HTTPException(status_code=400, detail=f"Unsupported model: {modelId}")
 
         return models.TextResponse(
             completion=completion
@@ -22,4 +24,6 @@ def invoke(body: models.TextRequest, modelId: str):
         if e.response["Error"]["Code"] == "AccessDeniedException":
             raise HTTPException(status_code=403)
         else:
-            raise HTTPException(status_code=500)
+            raise HTTPException(status_code=500, detail=str(e.response["Error"]))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

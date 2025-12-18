@@ -27,7 +27,7 @@ STYLES = [
     "tile-texture"
 ]
 
-def invoke(prompt, style_preset):
+def invoke(prompt, style_preset, model_id):
     prompt_config = {
         "text_prompts": [ { "text": prompt } ],
         "cfg_scale": 20,
@@ -39,7 +39,7 @@ def invoke(prompt, style_preset):
 
     response = bedrock_runtime.invoke_model(
         body=json.dumps(prompt_config),
-        modelId="stability.stable-diffusion-xl"
+        modelId=model_id
     )
 
     response_body = json.loads(response["body"].read())
