@@ -1,6 +1,6 @@
 export const defaultModel = {
     modelName: "Anthropic Claude 3.5 Sonnet",
-    modelId: "anthropic.claude-3-5-sonnet-20241022-v2:0",
+    modelId: "us.anthropic.claude-3-5-sonnet-20241022-v2:0",
     temperatureRange: {
         min: 0,
         max: 1,
